@@ -19,7 +19,15 @@ public class GuessTheNumber {
     int round = 1;
     System.out.println(round + ". próbálkozás: ");
     int temp = Integer.parseInt(scanner.nextLine());
-//    while (temp != guessedNumber & round <= 6) {
+    temp = makeRoundsOfGuesses(scanner, round, temp);
+    if (temp == guessedNumber) {
+      System.out.println("Sikerült! Kitaláltad az általam gondolt számot: " + guessedNumber);
+    } else {
+      System.out.println("Sajnos nem találtad ki a gondolt számot! A gondolt szám a(z) " + guessedNumber + " volt!");
+    }
+  }
+
+  private int makeRoundsOfGuesses(Scanner scanner, int round, int temp) {
     while (round < 6 & temp != guessedNumber) {
       round++;
       if (guessedNumber < temp) {
@@ -31,11 +39,7 @@ public class GuessTheNumber {
       }
       temp = Integer.parseInt(scanner.nextLine());
     }
-    if (temp == guessedNumber) {
-      System.out.println("Sikerült! Kitaláltad az általam gondolt számot: " + guessedNumber);
-    } else {
-      System.out.println("Sajnos nem találtad ki a gondolt számot! A gondolt szám a(z) " + guessedNumber + " volt!");
-    }
+    return temp;
   }
 
   public static void main(String[] args) {

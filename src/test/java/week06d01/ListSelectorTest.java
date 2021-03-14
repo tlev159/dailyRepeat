@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ListSelectorTest {
 
   @Test
-  void selectOddsFromList() {
+  void testSelectOddsFromList() {
 
     ListSelector listSelector = new ListSelector();
 
@@ -20,5 +20,21 @@ class ListSelectorTest {
     ));
 
     assertEquals("[alma, szilva, banán]", listSelector.selectOddsFromList(sample));
+  }
+
+  @Test
+  void testWhenListIsEmpty() {
+
+    ListSelector listSelector = new ListSelector();
+
+    assertEquals("", listSelector.selectOddsFromList(List.of()));
+  }
+
+  @Test
+  void selectOddsFromList() {
+
+
+    Exception ex = assertThrows(IllegalArgumentException.class, () -> new ListSelector().selectOddsFromList(null));
+    assertEquals("List can not be null!", ex.getMessage());
   }
 }
